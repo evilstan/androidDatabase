@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/alexp/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_list_item_1.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_add.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_add_waybill.xml" value="0.1" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_balance.xml" value="0.1" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_edit_list.xml" value="0.33" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_edit_waybill.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_start.xml" value="0.33" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/activity_view_waybill.xml" value="0.1" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/dialog_edit_item.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/inflate_autocomplete.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/inflate_edit_text.xml" value="0.14492753623188406" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/inflate_layout.xml" value="0.2128623188405797" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/inflate_spinner.xml" value="0.1" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/layout.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/alexp/OneDrive/Android/DataBase reserve/app/src/main/res/layout/popup_menu_layout.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">Data Base</string>
+    <string name="cat_scientist">Cat scientist walks right and left</string> //legacy, used for debug)
+    <string name="date">"Дата: "</string>
+    <string name="id_number">"Номер: "</string>
+    <string name="edit_text_hint">"кільк"</string>
+    <string name="auto_complete_hint">"Назва елемента"</string>
+    <string name="new_waybill">"Нова накладна"</string>
+    <string name="save">Зберегти</string>
+    <string name="edit_activity_title">Редагувати список</string>
+    <string name="balance_activity_title">Всього на об\`єкті</string>
+    <string name="database_empty">База даних не містить записів</string>
+    <string name="add_waybill">Додати накладну</string>
+    <string name="save_waybill">Зберегти накладну</string>
+    <string name="main_activity_title">Список накладних</string>
+    <string name="new_item_name">Нова назва</string>
+    <string name="edit_dialog_button_edit">Змінити</string>
+    <string name="edit_dialog_button_cancel">Відміна</string>
+    <string name="dialog_edit_title">Змінити назву</string>
+    <string name="dialog_wanna_delete">Видалити позицію з бази?</string>
+    <string name="dialog_yes">Так</string>
+    <string name="dialog_no">Ні</string>
+    <string name="dialog_no_stay">Повернутися і зберегти</string>
+    <string name="dialog_yes_exit">Вийти</string>
+    <string name="exit_without_saving">Вийти без збереження?</string>
+    <string name="waybill_will_not_be_saved">Накладна не буде додана до бази</string>
+    <string name="delete_waybill_from_database">Видалити накладну з бази?</string>
+    <string name="waybill_will_be_deleted">Накладна буде видалена</string>
+    <string name="are_you_sure">Ви впевнені?</string>
+    <string name="irreversible_action">Цю дію неможливо відмінити. Ви впевнені?</string>
+    <string name="yes_delete">Так, видалити</string>
+    <string name="no_not_delete">Ні, не видаляти</string>
+    <string name="save_changes">Зберегти зміни</string>
+    <string name="change_waybill">Змінити накладну</string>
+    <string name="summary_table">Зведена таблиця </string>
+    <string name="waybill_in">Ввезення матеріалів </string>
+    <string name="waybill_out">Вивезення матеріалів </string>
+    <string name="material_in">На об\'єкт </string>
+    <string name="material_out">З об\'єкта </string>
+    <string name="settings">Налаштування </string>
+    <string name="waybills_list">Список накладних</string>
+    <string name="about" >Про програму</string>
+    <string name="waybill_direction" >Напрямок руху матеріалів</string>
+    <string name="materials_in_or_out" >Ввезення чи вивезення матеріалів</string>
+    <string name="type_number" >Введіть номер накландої</string>
+    <string name="type_name" >Введіть назву</string>
+    <string name="type_item_value" >Введіть кількість</string>
+    <string name="pushed" >Накладна успішно додана</string>
+    <string name="max_size_reached" >Максимальна кількість позицій - </string>
+    <string name="not_found" >Позицію не знайдено. Буде додано до бази</string>
+    <string name="add_waybill_out" >Додати накладну на вивезення</string>
+    <string name="add_waybill_in" >Додати накладну на завезення</string>
+    <string name="list_waybill_out" >Список накладних на вивезення</string>
+    <string name="list_waybill_in" >Список накладних на завезення</string>
+    <string name="view_waybill_in" >Завезення</string>
+    <string name="view_waybill_out" >Вивезення</string>
+    <string name="check" >Перевірити!</string>
+
+
+
+    <string-array name="elements_name">
+        <item>Консоль комплект</item>
+        <item>Фанера різана</item>
+        <item>Балка різана</item>
+        <item>Щит 3,3х1,35</item>
+        <item>Щит 3,3х1,20</item>
+        <item>Щит 3,3х0,9</item>
+        <item>Щит 3,3х0,6</item>
+        <item>Щит 3,3х0,45</item>
+        <item>Щит 3,3х0,3</item>
+        <item>Щит 3,3х0,25</item>
+        <item>Кут глухий</item>
+        <item>Кут розпалубний</item>
+        <item>Балка 2,65</item>
+        <item>Балка 3,3</item>
+        <item>Балка 3,9</item>
+        <item>Фанера 2,5х1,25</item>
+        <item>Зажим швидкодіючий</item>
+        <item>Зажим універсальний</item>
+        <item>Суперплита</item>
+        <item>Анкерний стержень</item>
+        <item>Універсальний з"єднувач</item>
+        <item>Вирівнююча шина 90</item>
+        <item>Зажимна клема</item>
+        <item>Розкос 3,5</item>
+        <item>Тринога</item>
+        <item>Головка стійки</item>
+        <item>Стійка перекриття 3,0</item>
+        <item>Стійка перекриття 3,5</item>
+        <item>Стійка перекриття 4,0</item>
+        <item>Стійка перекриття 5,0</item>
+        <item>Стійка перекриття 5,5</item>
+    </string-array>
+
+    <string-array name="units">
+        <item>комп</item>
+        <item>м3</item>
+        <item>м. п.</item>
+        <item>м2</item>
+        <item>шт</item>
+        <item>уп</item>
+        <item>т</item>
+        <item>кг</item>
+        <item>л</item>
+    </string-array>
+
+</resources>
