@@ -167,24 +167,13 @@ public class ListActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.menuItem_in:
                         Intent intent = new Intent(ListActivity.this, AddWaybillActivity.class);
-                        intent.putExtra("InOrOut", "in");
+                        intent.putExtra("direction_in", true);
                         startActivity(intent);
                         break;
                     case R.id.menuItem_out:
                         Intent intent2 = new Intent(ListActivity.this, AddWaybillActivity.class);
-                        intent2.putExtra("InOrOut", "out");
+                        intent2.putExtra("direction_in", false);
                         startActivity(intent2);
-                        break;
-                    case R.id.menu_item_edit:
-                        Intent intent3 = new Intent(ListActivity.this, SettingsActivity.class);
-                        intent3.putExtra("Toast", "HelloWorld");
-                        startActivity(intent3);
-                        break;
-                    case R.id.menu_item_balance:
-                        //TODO add activity to view all items quantity, something like EditView
-                        Intent intent4 = new Intent(ListActivity.this, SummaryActivity.class);
-                        intent4.putExtra("Toast", "HelloWorld");
-                        startActivity(intent4);
                         break;
                 }
                 return false;

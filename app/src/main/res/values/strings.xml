@@ -46,6 +46,7 @@
     <string name="type_name" >Введіть назву</string>
     <string name="type_item_value" >Введіть кількість</string>
     <string name="pushed" >Накладна успішно додана</string>
+    <string name="updated" >Накладна успішно змінена</string>
     <string name="max_size_reached" >Максимальна кількість позицій - </string>
     <string name="not_found" >Позицію не знайдено. Буде додано до бази</string>
     <string name="add_waybill_out" >Додати накладну на вивезення</string>

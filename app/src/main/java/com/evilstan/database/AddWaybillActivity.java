@@ -333,7 +333,7 @@ public class AddWaybillActivity extends AppCompatActivity {
             return;
         }
 
-        dbEditor.addWayBill(dataMap, idNumber, mCalendar, tableName);
+        dbEditor.addWaybill(dataMap, idNumber, mCalendar, tableName);
         showMessage(context.getString(R.string.pushed));
 
         finish();

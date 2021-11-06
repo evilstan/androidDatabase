@@ -59,6 +59,7 @@ public class SummaryActivity extends AppCompatActivity {
             //if value negative - say about it
             String issue = "";
             double v = es.getValue();
+
             if (v < 0) {
                 issue = SummaryActivity.this.getResources().getString(R.string.check);
             }

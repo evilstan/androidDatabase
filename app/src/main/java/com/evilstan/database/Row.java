@@ -79,10 +79,18 @@ public class Row {
     }
 
     public void setValue(Double value) {
-        String textValue = value.toString();
+        String textValue = textValue(value);
         editTextQuantity.setText(textValue);
     }
 
+    private String textValue(Double value) {
+        //if value integer - trim decimal part
+        String textValue = String.valueOf(value);
+        if (textValue.endsWith(".0")) {
+            textValue = textValue.substring(0, textValue.length() - 2);
+        }
+        return textValue;
+    }
 
     public int getRowId() {
         return ID;

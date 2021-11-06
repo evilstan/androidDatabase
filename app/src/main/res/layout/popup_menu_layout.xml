@@ -7,10 +7,5 @@
     <item
         android:id="@+id/menuItem_out"
         android:title="@string/waybill_out" />
-    <item
-      android:id="@+id/menu_item_balance"
-      android:title="@string/summary_table" />
-    <item
-        android:id="@+id/menu_item_edit"
-        android:title="@string/settings" />
+
 </menu>

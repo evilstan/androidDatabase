@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,12 +17,12 @@ import java.util.Map;
 public class DataBaseEditor {
 
     private final DBHelper dbHelper;
-    private SQLiteDatabase mDbHelper;
+    private SQLiteDatabase dbWaybills;
     private final List<String> colNamesList; //list of table column names
     List<Integer> indexesList; //list of all column indexes of table in db
     final String REGEX_SPLIT_UNITS = ListActivity.REGEX_SPLIT_UNITS;
     final String REGEX_SPLIT_ID = ListActivity.REGEX_SPLIT_ID;
-
+    final String TAG = this.getClass().getSimpleName();
     private final Context context;
 
 
@@ -29,8 +31,8 @@ public class DataBaseEditor {
         dbHelper = new DBHelper(context);
         colNamesList = new ArrayList<>();
         indexesList = new ArrayList<>();
-        mDbHelper = dbHelper.getWritableDatabase();
-        Cursor cursor = mDbHelper.query("waybill_In", null, null, null, null, null, null);
+        dbWaybills = dbHelper.getWritableDatabase();
+        Cursor cursor = dbWaybills.query("waybill_In", null, null, null, null, null, null);
 
         //fill list with names of columns with data
         for (int i = 0; i < 20; i++) {
@@ -45,14 +47,14 @@ public class DataBaseEditor {
         }
 
         cursor.close();
-        mDbHelper.close();
+        dbWaybills.close();
     }
 
     //pushes item names from array to database. Debugging tool
     public void addItems(List<String> list) {
         //dbHelper = new DBHelper(context);
         ContentValues cv = new ContentValues();
-        mDbHelper = dbHelper.getWritableDatabase();
+        dbWaybills = dbHelper.getWritableDatabase();
 
         int i = 0;
 
@@ -67,14 +69,14 @@ public class DataBaseEditor {
     }
 
 
-    public void addWayBill(Map<String, Double> dataMap, int idNumber, Calendar calendar,
+    public void addWaybill(Map<String, Double> dataMap, int idNumber, Calendar calendar,
         String tableName) {
         //TODO make idNumber String instead of Integer
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String date = sdf.format(calendar.getTime());
 
         ContentValues cv = new ContentValues();
-        mDbHelper = dbHelper.getWritableDatabase();
+        dbWaybills = dbHelper.getWritableDatabase();
         int i = 0;
         cv.put("date", date);
         cv.put("idNumber", idNumber);
@@ -87,15 +89,43 @@ public class DataBaseEditor {
             i++;
         }
 
-        long rowID = mDbHelper.insert(tableName, null, cv);
-        mDbHelper.close();
+        long rowID = dbWaybills.insert(tableName, null, cv);
+        dbWaybills.close();
+    }
+
+    public void updateWaybill(Map<String, Double> dataMap, int idNumber, Calendar calendar,
+        String tableName, int id) {
+        //TODO make idNumber String instead of Integer
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String date = sdf.format(calendar.getTime());
+
+        ContentValues cv = new ContentValues();
+        dbWaybills = dbHelper.getWritableDatabase();
+        int i = 0;
+        cv.put("date", date);
+        cv.put("idNumber", idNumber);
+
+        Log.d(TAG, "Starting parsing to CV");
+
+        for (Map.Entry<String, Double> mapEntry : dataMap.entrySet()) {
+            System.out.println(mapEntry.getKey() + " " + mapEntry.getValue());
+            cv.put(colNamesList.get(i), mapEntry.getKey());
+            i++;
+            cv.put(colNamesList.get(i), mapEntry.getValue());
+            i++;
+        }
+
+        //long rowID = dbWaybills.insert(tableName, null, cv);
+        long rowID = dbWaybills.update(tableName,cv,"_id = ?",
+            new String[] { String.valueOf(id) });
+        dbWaybills.close();
     }
 
 
     //calculates sum of every item in DB
     public Map<String, Double> showBalance(String tableName) {
-        mDbHelper = dbHelper.getReadableDatabase();
-        Cursor cursor = mDbHelper.query(tableName, null, null, null, null, null, null);
+        dbWaybills = dbHelper.getReadableDatabase();
+        Cursor cursor = dbWaybills.query(tableName, null, null, null, null, null, null);
         Map<String, Double> dataMap = new LinkedHashMap<>();
 
         if (cursor.moveToFirst()) {
@@ -117,7 +147,7 @@ public class DataBaseEditor {
             System.out.println("Database is empty");
         }
 
-        mDbHelper.close();
+        dbWaybills.close();
         cursor.close();
         return dataMap;
     }
@@ -125,8 +155,8 @@ public class DataBaseEditor {
     // returns all records ID's for start screen
     public List<Integer> getRecordIdList(String tableName) {
         List<Integer> mResult = new ArrayList<>();
-        mDbHelper = dbHelper.getReadableDatabase();
-        Cursor cursor = mDbHelper.query(tableName, null, null, null, null, null, null);
+        dbWaybills = dbHelper.getReadableDatabase();
+        Cursor cursor = dbWaybills.query(tableName, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -138,7 +168,7 @@ public class DataBaseEditor {
             System.out.println("Database is empty");
         }
 
-        mDbHelper.close();
+        dbWaybills.close();
         cursor.close();
         return mResult;
     }
@@ -147,8 +177,8 @@ public class DataBaseEditor {
     // returns all records for start screen
     public List<String> getData(String tableName) {
         List<String> dataArray = new ArrayList<>();
-        mDbHelper = dbHelper.getReadableDatabase();
-        Cursor cursor = mDbHelper.query(tableName, null, null, null, null, null, null);
+        dbWaybills = dbHelper.getReadableDatabase();
+        Cursor cursor = dbWaybills.query(tableName, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -161,12 +191,17 @@ public class DataBaseEditor {
 
                 for (int i = 0; i < indexesList.size(); i += 2) {
                     String itemName = cursor.getString(i + 3);
-                    double itemValue = cursor.getDouble(i + 4);
-
                     if (itemName == null) {
                         break;
                     }
 
+                    double itemValue = cursor.getDouble(i + 4);
+                    //if value integer - trim decimal part
+                    String value = String.valueOf(itemValue);
+                    if (value.endsWith(".0")) {
+                        value = value.substring(0, value.length() - 2);
+                    }
+                    //parse units from string
                     String unit;
                     try {
                         unit = itemName.split(REGEX_SPLIT_UNITS)[1];
@@ -174,7 +209,7 @@ public class DataBaseEditor {
                         unit = "шт";
                     }
                     itemName = itemName.split(REGEX_SPLIT_UNITS)[0];
-                    buf += itemName + " = " + itemValue + " " + unit + "; ";
+                    buf += itemName + " = " + value + " " + unit + "; ";
                 }
 
                 buf += "\n";
@@ -186,7 +221,7 @@ public class DataBaseEditor {
             dataArray.add(temp);
         }
 
-        mDbHelper.close();
+        dbWaybills.close();
         cursor.close();
         return dataArray;
     }
@@ -195,8 +230,8 @@ public class DataBaseEditor {
     //returns one record by it's ID
     public Map<String, Double> getRecord(int id, String tableName) {
         Map<String, Double> dataMap = new LinkedHashMap<>();
-        mDbHelper = dbHelper.getReadableDatabase();
-        Cursor mCursor = mDbHelper.query(tableName, null, null, null, null, null, null);
+        dbWaybills = dbHelper.getReadableDatabase();
+        Cursor mCursor = dbWaybills.query(tableName, null, null, null, null, null, null);
 
         if (mCursor.moveToFirst()) {
 
@@ -228,16 +263,16 @@ public class DataBaseEditor {
             System.out.println("Database is empty");
         }
 
-        mDbHelper.close();
+        dbWaybills.close();
         mCursor.close();
         return dataMap;
     }
 
 
     public void deleteRecord(int id, String tableName) {
-        mDbHelper = dbHelper.getReadableDatabase();
-        mDbHelper.delete(tableName, "_id=" + id, null);
-        mDbHelper.close();
+        dbWaybills = dbHelper.getReadableDatabase();
+        dbWaybills.delete(tableName, "_id=" + id, null);
+        dbWaybills.close();
     }
 
     static class DBHelper extends SQLiteOpenHelper {
