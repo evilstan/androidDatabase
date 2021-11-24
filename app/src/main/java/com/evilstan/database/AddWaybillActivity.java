@@ -213,6 +213,7 @@ public class AddWaybillActivity extends AppCompatActivity {
             }
         });
 
+
         row.getAutocompleteTextView().setOnItemClickListener(
             (AdapterView<?> parent, View view, int position, long id) -> {
                 wasSaved = false;
